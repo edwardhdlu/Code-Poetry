@@ -20,7 +20,19 @@ return array(
 	'GET /' => function(){
 		return View::make('home/index');
 	},
-
-	'GET /submit/' => function(){
-		return View::make('submit')	
+	
+	'GET /poem' => function(){
+		return View::make('poem/index');
 	},
+	
+	'POST /poem/submit' => function(){
+		$name = Input::get('name');
+		$poem = Input::get('poem');
+		// Do database stuff in here
+		
+		return View::make('poem/submit')
+			->bind('name', $name)
+			->bind('poem', $poem);
+	},
+
+);
