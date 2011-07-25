@@ -26,13 +26,13 @@ return array(
 	},
 	
 	'POST /poem/submit' => function(){
-		$name = Input::get('name');
-		$poem = Input::get('poem');
-		// Do database stuff in here
+		$submitted_data = array(
+			'name' => Input::get('name'),
+			'poem' => Input::get('poem')
+		);
 		
-		return View::make('poem/submit')
-			->bind('name', $name)
-			->bind('poem', $poem);
+		$query = DB::table('poems')->insert($submitted_data);
+		return Redirect::to('/poem');
 	},
 
 );
